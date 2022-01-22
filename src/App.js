@@ -1,3 +1,4 @@
+/* global chrome */
 import logo192 from "./logo192.png";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,13 +7,15 @@ export default function App() {
 
   const testFunction = async () => {
     try {
+      let queryOptions = { active: true, currentWindow: true };
+      chrome.tabs.query(queryOptions, function (res) {
+        console.log(res)
+      })
       console.log("Testing console")
-      chrome.tabs.query()
     } catch (e) {
       console.log(e)
     }
   }
-
 
   return (
     <div className="App">
