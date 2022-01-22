@@ -21,7 +21,7 @@ export default function App() {
           Learn React
         </a>
         <div>Alex Test</div>
-        <button onClick={testFunction}>Test console</button>
+        <button onClick={getCurrentTab}>Test console</button>
       </header>
     </div>
   );
