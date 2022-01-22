@@ -1,5 +1,5 @@
 {
-  "name": "Hello Extensions",
+  "name": "McHacks9 Extension",
   "description": "Base Level Extension",
   "version": "1.0",
   "manifest_version": 2,
@@ -12,13 +12,9 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": [
-    "tabs"
-  ],
+  "permissions": ["tabs"],
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["background.js"],
     "persistent": false
   }
 }

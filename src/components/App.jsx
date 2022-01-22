@@ -1,10 +1,8 @@
 /* global chrome */
-import logo192 from "./logo192.png";
-import { Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import BootstrapCard from "./BootstrapCard";
 
 export default function App() {
-
   const testFunction = async () => {
     try {
       let queryOptions = { active: true, currentWindow: true };
@@ -13,16 +11,14 @@ export default function App() {
       })
       console.log("Testing console")
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
-  }
+  };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo192} className="App-logo" alt="brand-logo" />
-        <Button variant="success" onClick={testFunction}>Test console</Button>
-      </header>
+      <BootstrapCard />
+      <Button onClick={testFunction}>Test console</Button>
     </div>
   );
 }
