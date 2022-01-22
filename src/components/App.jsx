@@ -78,8 +78,24 @@ export default function App() {
           setDisplayString(companyName)
         }
 
-        var latitude = ""
-        var longitude = ""
+        var finalLatitude = ""
+        var finalLongitude = ""
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            // Show a map centered at latitude / longitude.
+            console.log(latitude)
+            console.log(longitude)
+
+            finalLatitude = latitude
+            finalLongitude = longitude
+
+          });
+        }
+        else {
+          alert("cannot retreive location, allow location permission")
+        }
 
         axios.get('http://127.0.0.1:5000/companycontroller/get', {
           params: {
@@ -92,20 +108,8 @@ export default function App() {
           .catch(function (error) {
             console.log(error);
           })
-          .then(function () {
-            // always executed
-          });
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(position => {
-            const { latitude, longitude } = position.coords;
-            // Show a map centered at latitude / longitude.
-            console.log(latitude)
-            console.log(longitude)
 
 
-          });
-        }
       })
       console.log("Testing console")
     } catch (e) {
