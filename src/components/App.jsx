@@ -81,40 +81,32 @@ export default function App() {
         var latitude = ""
         var longitude = ""
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(position => {
-            const { tempLatitude, tempLongitude } = position.coords;
-            // Show a map centered at latitude / longitude.
-            latitude = tempLatitude
-            longitude = tempLongitude
-          });
-
-
-
-          axios.get('http://127.0.0.1:5000/companycontroller/get', {
-            params: {
-              testParam: "alex"
-            }
-          })
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
-            .then(function () {
-              // always executed
-            });
-
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-              const { latitude, longitude } = position.coords;
-              // Show a map centered at latitude / longitude.
-              console.log(latitude)
-              console.log(longitude)
-            });
+        axios.get('http://127.0.0.1:5000/companycontroller/get', {
+          params: {
+            testParam: "alex"
           }
         })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            // Show a map centered at latitude / longitude.
+            console.log(latitude)
+            console.log(longitude)
+
+
+          });
+        }
+      })
       console.log("Testing console")
     } catch (e) {
       console.log(e);
