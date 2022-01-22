@@ -1,25 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function CircleScore() {
   const [number, setNumber] = useState(0);
+
+  useEffect(() => number < 65 && setTimeout(() => setNumber(number + 1), 200), [number]);
   // let random = Math.floor(Math.random() * 101);
-  let counter = 0;
-  setInterval(() => {
-    if (counter === 65) {
-      clearInterval();
-    } else {
-      counter++;
-      console.log(counter);
-    }
-  }, 200);
 
   return (
     <div className="skill">
       <div className="outer">
         <div className="inner">
-          <div id="number" value={number}>
-            {number}
-          </div>
+          <div id="number">{number}</div>
         </div>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
