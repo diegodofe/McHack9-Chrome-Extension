@@ -3,7 +3,7 @@ import logo192 from "../logo192.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Card, Accordion } from "react-bootstrap";
 
-export default function BootstrapCard() {
+export default function CardComp() {
   return (
     <Card className="text-center" border="success" style={{ width: "18rem" }}>
       <Card.Img variant="top" src={logo192} alt="brand-logo" />

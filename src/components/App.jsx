@@ -1,6 +1,6 @@
 /* global chrome */
 import React from "react";
-import BootstrapCard from "./BootstrapCard";
+import CardComp from "./CardComp";
 
 export default function App() {
   const testFunction = async () => {
@@ -17,8 +17,8 @@ export default function App() {
 
   return (
     <div className="App">
-      <BootstrapCard />
-      <Button onClick={testFunction}>Test console</Button>
+      <CardComp />
+      <button onClick={testFunction}>Test console</button>
     </div>
   );
 }
