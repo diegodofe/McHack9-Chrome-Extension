@@ -12,9 +12,14 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": ["tabs"],
+  "permissions": [
+    "tabs",
+    "geolocation"
+  ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": [
+      "background.js"
+    ],
     "persistent": false
   }
 }

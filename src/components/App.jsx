@@ -76,6 +76,14 @@ export default function App() {
         console.log(urlSearchParams.get('search'))
         setDisplayString(baseURl)
 
+        var baseUrlSplit = baseURl.split(".")
+        var companyName = ""
+
+        if (baseURl.length > 0) {
+          companyName = baseUrlSplit[1]
+          setDisplayString(companyName)
+        }
+
         axios.get('http://127.0.0.1:5000/companycontroller/get', {
           params: {
             testParam: "alex"
@@ -91,6 +99,14 @@ export default function App() {
             // always executed
           });
 
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            // Show a map centered at latitude / longitude.
+            console.log(latitude)
+            console.log(longitude)
+          });
+        }
       })
       console.log("Testing console")
     } catch (e) {
