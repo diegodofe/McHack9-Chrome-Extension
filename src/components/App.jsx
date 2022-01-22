@@ -64,18 +64,28 @@ export default function App() {
           }
         }
 
-        console.log("search term");
-        console.log(amazonSearchTerm);
-        console.log(baseURl);
-        console.log(urlSearchParams.get("search"));
-        setDisplayString(baseURl);
+        console.log("search term")
+        console.log(amazonSearchTerm)
+        console.log(baseURl)
+        console.log(urlSearchParams.get('search'))
+        setDisplayString(baseURl)
 
-        axios
-          .get("http://127.0.0.1:5000/companycontroller/get", {
-            params: {
-              testParam: "alex",
-            },
-          })
+        var baseUrlSplit = baseURl.split(".")
+        var companyName = ""
+
+        if (baseURl.length > 0) {
+          companyName = baseUrlSplit[1]
+          setDisplayString(companyName)
+        }
+
+        var latitude = ""
+        var longitude = ""
+
+        axios.get('http://127.0.0.1:5000/companycontroller/get', {
+          params: {
+            testParam: "alex"
+          }
+        })
           .then(function (response) {
             console.log(response);
           })
@@ -85,8 +95,19 @@ export default function App() {
           .then(function () {
             // always executed
           });
-      });
-      console.log("Testing console");
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            // Show a map centered at latitude / longitude.
+            console.log(latitude)
+            console.log(longitude)
+
+
+          });
+        }
+      })
+      console.log("Testing console")
     } catch (e) {
       console.log(e);
     }
