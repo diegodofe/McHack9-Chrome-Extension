@@ -2,12 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 
 export default function App() {
-  const testFunction = () => {
-    console.log("Testing console.log");
-    // chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-    //   let url = tabs[0].url;
-    //   console.log(url)
-    // });
+  const getCurrentTab = async () => {
+    console.log("getting tab");
+    // let queryOptions = { active: true, currentWindow: true };
+    // let [tab] = await chrome.tabs.query(queryOptions);
+    // console.log("tab");
+    // return tab;
   };
 
   return (
