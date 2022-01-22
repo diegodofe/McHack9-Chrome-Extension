@@ -1,5 +1,5 @@
 /* global chrome */
-import React from "react";
+import React, { useEffect } from "react";
 
 import logo192 from "../logo192.png";
 import Accordions from "./Accordions";
@@ -14,13 +14,28 @@ export default function App() {
     try {
       let queryOptions = { active: true, currentWindow: true };
       chrome.tabs.query(queryOptions, function (res) {
-        console.log(res)
+        console.log(res[0].url)
+
+
       })
       console.log("Testing console")
     } catch (e) {
       console.log(e);
     }
   };
+
+
+  useEffect(() => {
+    try {
+      let queryOptions = { active: true, currentWindow: true };
+      chrome.tabs.query(queryOptions, function (res) {
+        console.log(res[0].url)
+      })
+      console.log("Testing console")
+    } catch (e) {
+      console.log(e);
+    }
+  }, [])
 
   return (
     <div className="App">
