@@ -18,16 +18,18 @@ export default function Accordions() {
 
   return (
     <Accordion>
-      {companies.map((company) => (
-        <Accordion.Item eventKey={company.key}>
-          <Accordion.Header>
-            <h6>
-              {company.name} <Badge bg={getColor(company.score)}>{company.score}</Badge>
-            </h6>
-          </Accordion.Header>
-          <Accordion.Body>{company.content}</Accordion.Body>
-        </Accordion.Item>
-      ))}
+      {companies
+        .sort((a, b) => b.score - a.score)
+        .map((company) => (
+          <Accordion.Item eventKey={company.key}>
+            <Accordion.Header>
+              <h6>
+                {company.name} <Badge bg={getColor(company.score)}>{company.score}</Badge>
+              </h6>
+            </Accordion.Header>
+            <Accordion.Body>{company.content}</Accordion.Body>
+          </Accordion.Item>
+        ))}
     </Accordion>
   );
 }

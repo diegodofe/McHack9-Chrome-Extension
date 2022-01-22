@@ -7,6 +7,7 @@ import Accordions from "./Accordions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card"
+import axios from 'axios';
 
 
 export default function App() {
@@ -16,6 +17,22 @@ export default function App() {
       chrome.tabs.query(queryOptions, function (res) {
         console.log(res[0].url)
 
+
+
+        axios.get('http://127.0.0.1:5000/companycontroller/get', {
+          params: {
+            testParam: "alex"
+          }
+        })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });
 
       })
       console.log("Testing console")
