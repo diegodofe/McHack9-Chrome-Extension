@@ -19,6 +19,21 @@ export default function App() {
 
 
 
+        axios.get('http://127.0.0.1:5000/companycontroller/get', {
+          params: {
+            testParam: "alex"
+          }
+        })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .then(function () {
+            // always executed
+          });
+
       })
       console.log("Testing console")
     } catch (e) {
