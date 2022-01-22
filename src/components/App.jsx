@@ -150,7 +150,7 @@ export default function App() {
     <div className="App">
       <Card className="text-center" border="success" style={{ width: "18rem" }}>
         <Card.Body>
-          <CircleScore />
+        <CircleScore />
         </Card.Body>
         <Card.Header as="h1">Carbon Score</Card.Header>
         <Card.Body>

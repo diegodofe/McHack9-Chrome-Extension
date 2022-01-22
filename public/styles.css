@@ -45,3 +45,8 @@ svg {
   position: relative;
   bottom: 160px;
 }
+@keyframes anim {
+  100% {
+    stroke-dashoffset: 150;
+  }
+}

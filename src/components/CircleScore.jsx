@@ -6,10 +6,10 @@ export default function CircleScore(props) {
   const fakePropsScore = 90;
 
   // Render circle animals
-  const style = document.getElementsByTagName("style")[0];
-  const fill = 490 - 472 * (fakePropsScore / 100);
-  let keyframe = `@keyframes anim {100% {stroke-dashoffset: ${fill};}}`;
-  style.sheet.insertRule(keyframe, 0);
+  //   const style = document.getElementsByTagName("style")[0];
+  //   const fill = 490 - 472 * (fakePropsScore / 100);
+  //   let keyframe = `@keyframes anim {100% {stroke-dashoffset: ${fill};}}`;
+  //   style.sheet.insertRule(keyframe, 0);
 
   // Render number animation
   const numberInterval = 2000 / fakePropsScore;
@@ -43,11 +43,11 @@ export default function CircleScore(props) {
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
         <defs>
           <linearGradient id="GradientColor">
-            <stop offset="0%" stop-color={getLight(fakePropsScore)} />
-            <stop offset="100%" stop-color={getDark(fakePropsScore)} />
+            <stop offset="0%" stopColor={getLight(fakePropsScore)} />
+            <stop offset="100%" stopColor={getDark(fakePropsScore)} />
           </linearGradient>
         </defs>
-        <circle cx="80" cy="80" r="70" stroke-linecap="round" />;
+        <circle cx="80" cy="80" r="70" strokeLinecap="round" />;
       </svg>
     </div>
   );
