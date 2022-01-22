@@ -9,7 +9,7 @@ export default function Accordions() {
   function getColor(score) {
     if (score >= 75) {
       return "success";
-    } else if (score >= 60) {
+    } else if (score >= 50) {
       return "warning";
     } else {
       return "danger";

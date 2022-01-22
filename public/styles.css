@@ -27,7 +27,8 @@ body {
 }
 
 #number {
-  font-weight: 600px;
+  font-size: xx-large;
+  font-weight: 600;
   color: #555;
 }
 
@@ -43,10 +44,4 @@ svg {
   display: inline;
   position: relative;
   bottom: 160px;
-}
-
-@keyframes anim {
-  100% {
-    stroke-dashoffset: 165;
-  }
 }
