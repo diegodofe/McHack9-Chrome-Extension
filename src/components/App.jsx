@@ -7,6 +7,7 @@ import Accordions from "./Accordions";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card"
+import axios from 'axios';
 
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
       let queryOptions = { active: true, currentWindow: true };
       chrome.tabs.query(queryOptions, function (res) {
         console.log(res[0].url)
+
 
 
       })

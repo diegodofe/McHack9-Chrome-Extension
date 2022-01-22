@@ -6,9 +6,11 @@ import Accordion from "react-bootstrap/Accordion";
 import Badge from "react-bootstrap/Badge";
 
 export default function Accordions() {
+
+
   return (
     <Accordion>
-      {companies.map((company) => (
+      {companies.sort((a, b) => b.score - a.score).map((company) => (
         <Accordion.Item eventKey={company.key}>
           <Accordion.Header>
             <h6>
