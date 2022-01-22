@@ -12,9 +12,5 @@
     "48": "logo192.png",
     "128": "logo192.png"
   },
-  "permissions": ["tabs"],
-  "background": {
-    "scripts": ["backgroundTest.js"],
-    "persistent": false
-  }
+  "permissions": ["tabs"]
 }
