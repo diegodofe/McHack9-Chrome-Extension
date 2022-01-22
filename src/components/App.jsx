@@ -14,6 +14,7 @@ import Card from "react-bootstrap/Card";
 
 export default function App() {
   const [displayString, setDisplayString] = useState("");
+  const [itemName, setItemName] = useState("");
 
   const testFunction = async () => {
     try {
@@ -36,8 +37,12 @@ export default function App() {
         var amazonSearchTerm = "";
 
         var walmartSearchTem = "";
+        var targetSearchTerm = "";
 
         var slashCount = 0;
+
+
+
 
         for (var x = 0; x < url.length - 1; x++) {
           console.log(url.charAt(x));
@@ -49,20 +54,32 @@ export default function App() {
             isSearchTerm = true;
             x++;
             x++;
-          } else if (url.charAt(x) === "&") {
+          }
+          else if (url.charAt(x) === "=" && baseURl.split(".")[1] === "target") {
+            isSearchTerm = true;
+            x++;
+          }
+          else if (url.charAt(x) === "&") {
             isSearchTerm = false;
+            break;
           }
           if (isSearchTerm) {
             amazonSearchTerm = amazonSearchTerm + url.charAt(x).toString();
             walmartSearchTem = walmartSearchTem + url.charAt(x).toString();
+            targetSearchTerm = targetSearchTerm + url.charAt(x).toString();
           }
-
           if (url.charAt(x) === "/") {
             slashCount++;
           } else if (slashCount === 2) {
             baseURl = baseURl + url.charAt(x);
           }
         }
+
+        setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results")
+
+
+        var finalLatitude = ""
+        var finalLongitude = ""
 
         console.log("search term")
         console.log(amazonSearchTerm)
@@ -76,10 +93,10 @@ export default function App() {
         if (baseURl.length > 0) {
           companyName = baseUrlSplit[1]
           setDisplayString(companyName)
-        }
 
-        var finalLatitude = ""
-        var finalLongitude = ""
+        }
+        console.log("Company name " + companyName)
+
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
@@ -97,9 +114,14 @@ export default function App() {
           alert("cannot retreive location, allow location permission")
         }
 
+        console.log("item name " + amazonSearchTerm || walmartSearchTem)
+
         axios.get('http://127.0.0.1:5000/companycontroller/get', {
           params: {
-            testParam: "alex"
+            name: companyName,
+            item: amazonSearchTerm || walmartSearchTem,
+            latitude: finalLatitude,
+            longitude: finalLatitude,
           }
         })
           .then(function (response) {
@@ -109,7 +131,10 @@ export default function App() {
             console.log(error);
           })
 
-
+        // latitude - string
+        // longitude - string
+        // name - string
+        // item - string
       })
       console.log("Testing console")
     } catch (e) {
@@ -124,6 +149,7 @@ export default function App() {
         console.log(res[0].url);
       });
       console.log("Testing console");
+      testFunction()
     } catch (e) {
       console.log(e);
     }
@@ -142,6 +168,7 @@ export default function App() {
             TEST FUNCTION
           </Button>
           <div>{displayString}</div>
+          <div>{itemName}</div>
         </Card.Body>
         <Accordions />
       </Card>
