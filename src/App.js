@@ -2,6 +2,16 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const testFunction = () => {
+
+    console.log("Testing console.log")
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+      let url = tabs[0].url;
+      console.log(url)
+    });
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +28,7 @@ function App() {
           Learn React
         </a>
         <div>Alex Test</div>
+        <button onClick={testFunction}>Test console</button>
       </header>
     </div>
   );
