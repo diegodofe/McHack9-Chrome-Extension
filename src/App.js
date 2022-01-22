@@ -1,16 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
-function App() {
-
+export default function App() {
   const testFunction = () => {
-
-    console.log("Testing console.log")
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-      let url = tabs[0].url;
-      console.log(url)
-    });
-  }
+    console.log("Testing console.log");
+    // chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+    //   let url = tabs[0].url;
+    //   console.log(url)
+    // });
+  };
 
   return (
     <div className="App">
@@ -19,12 +17,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
           Learn React
         </a>
         <div>Alex Test</div>
@@ -33,5 +26,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
