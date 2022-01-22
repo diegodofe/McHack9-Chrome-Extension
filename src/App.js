@@ -3,14 +3,12 @@ import './App.css';
 
 function App() {
 
-
-
   const getCurrentTab = async () => {
     console.log("getting tab")
-    let queryOptions = { active: true, currentWindow: true };
-    let [tab] = await chrome.tabs.query(queryOptions);
-    console.log("tab");
-    return tab;
+    // let queryOptions = { active: true, currentWindow: true };
+    // let [tab] = await chrome.tabs.query(queryOptions);
+    // console.log("tab");
+    // return tab;
   }
 
   return (
