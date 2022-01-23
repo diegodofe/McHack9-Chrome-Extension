@@ -1,5 +1,5 @@
 # McHack9-Chrome-Extension
-Conscious Consumer is a chrome extension that suggests local and sustainable shopping alternatives to customers. Built during McHacks9! The front-end was built with React.js and Bootstrap. The back-end was built with Python, Flask and CockroachDB.
+Conscious Consumer is a Chrome Extension that suggests local and sustainable shopping alternatives to customers. Built during McHacks9! The front-end was built with React.js and Bootstrap. The back-end was built with Python, Flask and CockroachDB.
 
 ## Examples
 ### Good Consumer Score
