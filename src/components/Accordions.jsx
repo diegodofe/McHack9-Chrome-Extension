@@ -33,7 +33,7 @@ export default function Accordions(props) {
                   <blockquote className="blockquote">
                     <p>{company.product}</p>
                   </blockquote>
-                  <figcaption>{company.price}</figcaption>
+                  {company.price && <figcaption>{company.price}</figcaption>}
                 </figure>
               </Stack>
             </Accordion.Body>

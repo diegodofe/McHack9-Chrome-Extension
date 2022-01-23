@@ -135,14 +135,26 @@ export default function App() {
 
             var storageList = [];
 
+            console.log("imported companies: ")
+            console.log(companies)
+
             response.data.forEach((item) => {
-              var listItem = companies.find((company) => {
-                return company.id === item.key;
-              });
-              listItem.score = item.esgRating;
-              storageList.push(listItem);
+              const [id, category, companyName] = item;
+
+              var foundCompany = companies.find((company) => {
+                return company.key === id
+              })
+
+              if (foundCompany) {
+
+                storageList.push(foundCompany)
+              }
+              
             });
+            console.log(storageList)
+            setSuggestions(storageList)
           })
+          
           .catch(function (error) {
             console.log(error);
           });

@@ -26,7 +26,7 @@ const companies = [
   {
     key: 7,
     name: "VdeV",
-    score: 63,
+    score: 65,
     img: "https://media.istockphoto.com/photos/mens-grey-blank-tshirt-templatefrom-two-sides-natural-shape-on-for-picture-id1134011734?k=20&m=1134011734&s=612x612&w=0&h=9kTFthlqNT6v0DIjIi-eJSwDZfSj65_qeFso7w2vFOA=",
     product: "Ceramic Plate",
     price: "$14.99",
@@ -34,7 +34,7 @@ const companies = [
   {
     key: 8,
     name: "Buk & Nola",
-    score: 43,
+    score: 92,
     img: "https://picsum.photos/75",
     product: "Kitchen Plates",
     price: "$13.99",
@@ -42,7 +42,7 @@ const companies = [
   {
     key: 9,
     name: "Boutique Marie Dumas",
-    score: 43,
+    score: 88,
     img: "https://picsum.photos/75",
     product: "Plates Bundle",
     price: "$20.50",
@@ -50,7 +50,7 @@ const companies = [
   {
     key: 4,
     name: "Le Magasin de Chainon",
-    score: 43,
+    score: 90,
     img: "https://picsum.photos/75",
     product: "Used Graphic Tee",
     price: "$2.99",
@@ -58,7 +58,7 @@ const companies = [
   {
     key: 5,
     name: "The Good Tee",
-    score: 43,
+    score: 73,
     img: "https://picsum.photos/75",
     product: "Ringspun Tee",
     price: "$6.99",
@@ -66,7 +66,7 @@ const companies = [
   {
     key: 6,
     name: "TenTree",
-    score: 43,
+    score: 62,
     img: "https://picsum.photos/75",
     product: "Cotton T-Shirt",
     price: "$7.99",
