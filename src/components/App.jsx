@@ -174,7 +174,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Card className="text-center" border="success" style={{ width: "18rem" }}>
+      <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Body>
           <CircleScore />
         </Card.Body>
