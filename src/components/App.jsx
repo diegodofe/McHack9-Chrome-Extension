@@ -30,6 +30,8 @@ export default function App() {
         console.log(urlSearchParams.get("sprefix"));
         console.log(urlSearchParams.get("ref"));
 
+        var productType = "";
+
         var baseURl = "";
 
         var isSearchTerm = false;
@@ -70,7 +72,12 @@ export default function App() {
           }
         }
 
+
         setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results");
+
+        if (companyName == 'starbucks') {
+          setItemName('coffee')
+        }
 
         var finalLatitude = "";
         var finalLongitude = "";
@@ -106,13 +113,32 @@ export default function App() {
 
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
+        if (companyName === 'starbucks') {
+          productType = "tshirt"
+        }
+        productType = amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results"
+
         axios
           .get("http://127.0.0.1:5000/statecontroller/get", {
             params: {
               name: companyName,
-              item: amazonSearchTerm || walmartSearchTem,
               longitude: finalLatitude,
               latitude: finalLatitude,
+            },
+          })
+          .then(function (response) {
+            console.log(response);
+            // rating of currentcompany
+            // esgrating
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+        axios
+          .get("http://127.0.0.1:5000/companyController/getlist", {
+            params: {
+              item: productType,
             },
           })
           .then(function (response) {
