@@ -149,12 +149,12 @@ export default function App() {
 
                 storageList.push(foundCompany)
               }
-              
+
             });
             console.log(storageList)
             setSuggestions(storageList)
           })
-          
+
           .catch(function (error) {
             console.log(error);
           });
@@ -179,16 +179,20 @@ export default function App() {
   }, []);
 
   // const fakePropsScore = 89;
+
+
   return (
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Header as="h5">Consumer Score</Card.Header>
         <Card.Body>
-          <CircleScore consumerScore={score || 82} />
+          <CircleScore consumerScore={score} />
         </Card.Body>
-        <Comment score={score || 82} />
-        <Card.Header as="h5">Local Alternatives</Card.Header>
-        <Accordions suggestions={suggestions} />
+        <Comment score={score} />
+        {score && <div>
+          <Card.Header as="h5">Local Alternatives</Card.Header>
+          <Accordions suggestions={suggestions} />
+        </div>}
         {/* <Button variant="secondary" onClick={testFunction}>
           TEST FUNCTION
         </Button>
