@@ -4,7 +4,7 @@ import companies from "../companies";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Accordion, Badge, Stack } from "react-bootstrap";
 
-export default function Accordions() {
+export default function Accordions(props) {
   function getColor(score) {
     if (score > 75) {
       return "success";
@@ -17,7 +17,7 @@ export default function Accordions() {
 
   return (
     <Accordion>
-      {companies
+      {props.suggestions
         .sort((a, b) => b.score - a.score)
         .map((company) => (
           <Accordion.Item key={company.key} eventKey={company.key}>
