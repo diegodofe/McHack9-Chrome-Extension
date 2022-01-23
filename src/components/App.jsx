@@ -13,6 +13,7 @@ import companies from "../companies";
 // Boostrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function App() {
   const [displayString, setDisplayString] = useState("");
@@ -190,7 +191,9 @@ export default function App() {
             <Card.Header as="h5">Local Alternatives</Card.Header>
             <Accordions suggestions={suggestions} />
           </div>
-        ) : null}
+        ) : (
+          <Spinner className="mb-2 mx-auto" animation="border" variant="secondary" />
+        )}
         {/* <Button variant="secondary" onClick={testFunction}>
           TEST FUNCTION
         </Button>
