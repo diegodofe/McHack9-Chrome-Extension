@@ -107,12 +107,13 @@ export default function App() {
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
         axios
-          .get("http://127.0.0.1:5000/companycontroller/get", {
+          .get("http://127.0.0.1:5000/statecontroller/get", {
             params: {
               name: companyName,
               item: amazonSearchTerm || walmartSearchTem,
-              latitude: finalLatitude,
               longitude: finalLatitude,
+              latitude: finalLatitude,
+
             },
           })
           .then(function (response) {
@@ -150,7 +151,7 @@ export default function App() {
     <div className="App">
       <Card className="text-center" border="success" style={{ width: "18rem" }}>
         <Card.Body>
-        <CircleScore />
+          <CircleScore />
         </Card.Body>
         <Card.Header as="h1">Carbon Score</Card.Header>
         <Card.Body>
