@@ -107,7 +107,7 @@ export default function App() {
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
         axios
-          .get("http://127.0.0.1:5000/companycontroller/get", {
+          .get("http://127.0.0.1:5000/statecontroller/get", {
             params: {
               name: companyName,
               item: amazonSearchTerm || walmartSearchTem,
