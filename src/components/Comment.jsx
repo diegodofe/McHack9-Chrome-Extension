@@ -1,8 +1,11 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Spinner from "react-bootstrap/Spinner";
 
 export default function Comment(props) {
-  if (props.score > 75) {
+  if (props.score === 0) {
+    return <Spinner className="mb-2 mx-auto" animation="border" variant="secondary" />;
+  } else if (props.score > 75) {
     return (
       <div className="alert alert-success" role="alert">
         <h4 className="alert-heading">Well Done! 🌲</h4>

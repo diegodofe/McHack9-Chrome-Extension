@@ -1,5 +1,4 @@
 import React from "react";
-import companies from "../companies";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Accordion, Badge, Stack } from "react-bootstrap";

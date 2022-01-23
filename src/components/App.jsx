@@ -12,7 +12,6 @@ import companies from "../companies";
 
 // Boostrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 export default function App() {
@@ -135,24 +134,22 @@ export default function App() {
 
             var storageList = [];
 
-            console.log("imported companies: ")
-            console.log(companies)
+            console.log("imported companies: ");
+            console.log(companies);
 
             response.data.forEach((item) => {
               const [id, category, companyName] = item;
 
               var foundCompany = companies.find((company) => {
-                return company.key === id
-              })
+                return company.key === id;
+              });
 
               if (foundCompany) {
-
-                storageList.push(foundCompany)
+                storageList.push(foundCompany);
               }
-
             });
-            console.log(storageList)
-            setSuggestions(storageList)
+            console.log(storageList);
+            setSuggestions(storageList);
           })
 
           .catch(function (error) {
@@ -180,19 +177,20 @@ export default function App() {
 
   // const fakePropsScore = 89;
 
-
   return (
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Header as="h5">Consumer Score</Card.Header>
         <Card.Body>
-          <CircleScore consumerScore={score} />
+          <CircleScore consumerScore={score || 0} />
         </Card.Body>
-        <Comment score={score} />
-        {score && <div>
-          <Card.Header as="h5">Local Alternatives</Card.Header>
-          <Accordions suggestions={suggestions} />
-        </div>}
+        <Comment score={score || 0} />
+        {score ? (
+          <div>
+            <Card.Header as="h5">Local Alternatives</Card.Header>
+            <Accordions suggestions={suggestions} />
+          </div>
+        ) : null}
         {/* <Button variant="secondary" onClick={testFunction}>
           TEST FUNCTION
         </Button>
