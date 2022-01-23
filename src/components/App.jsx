@@ -123,7 +123,10 @@ export default function App() {
           .get("http://127.0.0.1:5000/stateController/get/" + companyName + "/50/-73", {})
           .then(function (response) {
             console.log(response);
-            setScore(response.data.esgRating);
+            //if (companyName == 'Starbucks') {
+            //   response.data.esgRating = 61
+            // }
+            setScore(response.data.esgRating * 2.1);
           })
           .catch(function (error) {
             console.log(error);
