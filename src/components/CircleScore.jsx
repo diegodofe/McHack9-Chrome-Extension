@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 export default function CircleScore(props) {
   const [number, setNumber] = useState(0);
 
-  const fakePropsScore = 90;
+  const fakePropsScore = 43;
 
   // Render circle animals
-  //   const style = document.getElementsByTagName("style")[0];
-  //   const fill = 490 - 472 * (fakePropsScore / 100);
-  //   let keyframe = `@keyframes anim {100% {stroke-dashoffset: ${fill};}}`;
-  //   style.sheet.insertRule(keyframe, 0);
+  // const style = document.getElementsByTagName("style")[0];
+  // const fill = 490 - 472 * (fakePropsScore / 100);
+  // let keyframe = `@keyframes anim {100% {stroke-dashoffset: ${fill};}}`;
+  // style.sheet.insertRule(keyframe, 0);
+  // document.body.appendChild(keyframe)
 
   // Render number animation
   const numberInterval = 2000 / fakePropsScore;

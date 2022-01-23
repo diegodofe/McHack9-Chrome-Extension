@@ -111,8 +111,9 @@ export default function App() {
             params: {
               name: companyName,
               item: amazonSearchTerm || walmartSearchTem,
-              latitude: finalLatitude,
               longitude: finalLatitude,
+              latitude: finalLatitude,
+
             },
           })
           .then(function (response) {
@@ -150,7 +151,7 @@ export default function App() {
     <div className="App">
       <Card className="text-center" border="success" style={{ width: "18rem" }}>
         <Card.Body>
-        <CircleScore />
+          <CircleScore />
         </Card.Body>
         <Card.Header as="h1">Carbon Score</Card.Header>
         <Card.Body>
