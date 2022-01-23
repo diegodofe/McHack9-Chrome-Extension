@@ -2,8 +2,7 @@ import React from "react";
 import companies from "../companies";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import Accordion from "react-bootstrap/Accordion";
-import Badge from "react-bootstrap/Badge";
+import { Accordion, Badge, Stack } from "react-bootstrap";
 
 export default function Accordions() {
   function getColor(score) {
@@ -27,7 +26,17 @@ export default function Accordions() {
                 {company.name} <Badge bg={getColor(company.score)}>{company.score}</Badge>
               </h6>
             </Accordion.Header>
-            <Accordion.Body>{company.content}</Accordion.Body>
+            <Accordion.Body>
+              <Stack className="s-0" direction="horizontal" gap={3}>
+                <img src={company.img} alt="random-pic" />
+                <figure class="text-end">
+                  <blockquote class="blockquote">
+                    <p>{company.product}</p>
+                  </blockquote>
+                  <figcaption>{company.price}</figcaption>
+                </figure>
+              </Stack>
+            </Accordion.Body>
           </Accordion.Item>
         ))}
     </Accordion>

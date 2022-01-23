@@ -15,6 +15,7 @@ import Card from "react-bootstrap/Card";
 export default function App() {
   const [displayString, setDisplayString] = useState("");
   const [itemName, setItemName] = useState("");
+  const [score, setScore] = useState(0);
 
   const testFunction = async () => {
     try {
@@ -29,6 +30,8 @@ export default function App() {
         console.log(urlSearchParams.get("k"));
         console.log(urlSearchParams.get("sprefix"));
         console.log(urlSearchParams.get("ref"));
+
+        var productType = "";
 
         var baseURl = "";
 
@@ -70,7 +73,12 @@ export default function App() {
           }
         }
 
+
         setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results");
+
+        if (companyName == 'starbucks') {
+          setItemName('coffee')
+        }
 
         var finalLatitude = "";
         var finalLongitude = "";
@@ -106,27 +114,39 @@ export default function App() {
 
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
+        if (companyName === 'starbucks') {
+          productType = "tshirt"
+        }
+        productType = amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results"
+
         axios
           .get("http://127.0.0.1:5000/statecontroller/get", {
             params: {
               name: companyName,
-              item: amazonSearchTerm || walmartSearchTem,
               longitude: finalLatitude,
               latitude: finalLatitude,
-
             },
           })
           .then(function (response) {
             console.log(response);
+            console.log(response.data.esgrating)
+            setScore(response.data.esgrating)
           })
           .catch(function (error) {
             console.log(error);
           });
-
-        // latitude - string
-        // longitude - string
-        // name - string
-        // item - string
+        axios
+          .get("http://127.0.0.1:5000/companyController/getlist", {
+            params: {
+              item: productType,
+            },
+          })
+          .then(function (response) {
+            console.log(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       });
       console.log("Testing console");
     } catch (e) {
@@ -147,22 +167,35 @@ export default function App() {
     }
   }, []);
 
+  const fakePropsScore = 42;
+
+  function getComment(score) {
+    if (score > 75) {
+      return "Great choice! Thanks for making the world a better place 🌲";
+    } else if (score > 55) {
+      return "Not bad, but you can do better! Checkout the companies below!";
+    } else {
+      return "Oof. Don't worry, it's not too late to shop somewhere else!";
+    }
+  }
+
   return (
     <div className="App">
-      <Card className="text-center" border="success" style={{ width: "18rem" }}>
+      <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Body>
-          <CircleScore />
+          <CircleScore consumerScore={fakePropsScore} />
         </Card.Body>
-        <Card.Header as="h1">Carbon Score</Card.Header>
+        <Card.Header as="h3">Consumer Score</Card.Header>
         <Card.Body>
-          <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-          <Button variant="success" onClick={testFunction}>
-            TEST FUNCTION
-          </Button>
-          <div>{displayString}</div>
-          <div>{itemName}</div>
+          <Card.Text>{getComment(fakePropsScore)}</Card.Text>
         </Card.Body>
+        <Card.Header as="h5">Local Alternatives</Card.Header>
         <Accordions />
+        <Button variant="secondary" onClick={testFunction}>
+          TEST FUNCTION
+        </Button>
+        <div>{displayString}</div>
+        <div>{itemName}</div>
       </Card>
     </div>
   );
