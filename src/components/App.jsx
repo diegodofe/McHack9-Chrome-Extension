@@ -41,9 +41,6 @@ export default function App() {
 
         var slashCount = 0;
 
-
-
-
         for (var x = 0; x < url.length - 1; x++) {
           console.log(url.charAt(x));
           if (url.charAt(x) === "k" && url.charAt(x + 1) === "=") {
@@ -54,12 +51,10 @@ export default function App() {
             isSearchTerm = true;
             x++;
             x++;
-          }
-          else if (url.charAt(x) === "=" && baseURl.split(".")[1] === "target") {
+          } else if (url.charAt(x) === "=" && baseURl.split(".")[1] === "target") {
             isSearchTerm = true;
             x++;
-          }
-          else if (url.charAt(x) === "&") {
+          } else if (url.charAt(x) === "&") {
             isSearchTerm = false;
             break;
           }
@@ -75,68 +70,65 @@ export default function App() {
           }
         }
 
-        setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results")
+        setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results");
 
+        var finalLatitude = "";
+        var finalLongitude = "";
 
-        var finalLatitude = ""
-        var finalLongitude = ""
+        console.log("search term");
+        console.log(amazonSearchTerm);
+        console.log(baseURl);
+        console.log(urlSearchParams.get("search"));
+        setDisplayString(baseURl);
 
-        console.log("search term")
-        console.log(amazonSearchTerm)
-        console.log(baseURl)
-        console.log(urlSearchParams.get('search'))
-        setDisplayString(baseURl)
-
-        var baseUrlSplit = baseURl.split(".")
-        var companyName = ""
+        var baseUrlSplit = baseURl.split(".");
+        var companyName = "";
 
         if (baseURl.length > 0) {
-          companyName = baseUrlSplit[1]
-          setDisplayString(companyName)
-
+          companyName = baseUrlSplit[1];
+          setDisplayString(companyName);
         }
-        console.log("Company name " + companyName)
-
+        console.log("Company name " + companyName);
 
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(position => {
+          navigator.geolocation.getCurrentPosition((position) => {
             const { latitude, longitude } = position.coords;
             // Show a map centered at latitude / longitude.
-            console.log(latitude)
-            console.log(longitude)
+            console.log(latitude);
+            console.log(longitude);
 
-            finalLatitude = latitude
-            finalLongitude = longitude
-
+            finalLatitude = latitude;
+            finalLongitude = longitude;
           });
-        }
-        else {
-          alert("cannot retreive location, allow location permission")
+        } else {
+          alert("cannot retreive location, allow location permission");
         }
 
-        console.log("item name " + amazonSearchTerm || walmartSearchTem)
+        console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
-        axios.get('http://127.0.0.1:5000/companycontroller/get', {
-          params: {
-            name: companyName,
-            item: amazonSearchTerm || walmartSearchTem,
-            latitude: finalLatitude,
-            longitude: finalLatitude,
-          }
-        })
+        axios
+          .get("http://127.0.0.1:5000/statecontroller/get", {
+            params: {
+              name: companyName,
+              item: amazonSearchTerm || walmartSearchTem,
+              longitude: finalLatitude,
+              latitude: finalLatitude,
+
+            },
+          })
           .then(function (response) {
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
-          })
+          });
 
         // latitude - string
         // longitude - string
         // name - string
         // item - string
-      })
-      console.log("Testing console")
+      });
+      console.log("Testing console");
     } catch (e) {
       console.log(e);
     }
@@ -149,7 +141,7 @@ export default function App() {
         console.log(res[0].url);
       });
       console.log("Testing console");
-      testFunction()
+      testFunction();
     } catch (e) {
       console.log(e);
     }
