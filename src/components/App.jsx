@@ -146,22 +146,35 @@ export default function App() {
     }
   }, []);
 
+  const fakePropsScore = 42;
+
+  function getComment(score) {
+    if (score > 75) {
+      return "Great choice! Thanks for making the world a better place 🌲";
+    } else if (score > 55) {
+      return "Not bad, but you can do better! Checkout the companies below!";
+    } else {
+      return "Oof. Don't worry, it's not too late to shop somewhere else!";
+    }
+  }
+
   return (
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Body>
-          <CircleScore />
+          <CircleScore consumerScore={fakePropsScore} />
         </Card.Body>
-        <Card.Header as="h1">Carbon Score</Card.Header>
+        <Card.Header as="h3">Consumer Score</Card.Header>
         <Card.Body>
-          <Card.Text>Some quick example text to build on the card title and make up the bulk of the card's content.</Card.Text>
-          <Button variant="success" onClick={testFunction}>
-            TEST FUNCTION
-          </Button>
-          <div>{displayString}</div>
-          <div>{itemName}</div>
+          <Card.Text>{getComment(fakePropsScore)}</Card.Text>
         </Card.Body>
+        <Card.Header as="h5">Local Alternatives</Card.Header>
         <Accordions />
+        <Button variant="secondary" onClick={testFunction}>
+          TEST FUNCTION
+        </Button>
+        <div>{displayString}</div>
+        <div>{itemName}</div>
       </Card>
     </div>
   );

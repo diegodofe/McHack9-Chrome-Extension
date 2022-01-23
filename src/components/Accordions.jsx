@@ -2,7 +2,7 @@ import React from "react";
 import companies from "../companies";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Accordion, Badge, Stack, Row, Col, Button } from "react-bootstrap";
+import { Accordion, Badge, Stack } from "react-bootstrap";
 
 export default function Accordions() {
   function getColor(score) {
