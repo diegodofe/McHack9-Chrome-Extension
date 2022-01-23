@@ -16,6 +16,7 @@ import Card from "react-bootstrap/Card";
 export default function App() {
   const [displayString, setDisplayString] = useState("");
   const [itemName, setItemName] = useState("");
+  const [score, setScore] = useState(0);
 
   const testFunction = async () => {
     try {
@@ -128,13 +129,12 @@ export default function App() {
           })
           .then(function (response) {
             console.log(response);
-            // rating of currentcompany
-            // esgrating
+            console.log(response.data.esgrating)
+            setScore(response.data.esgrating)
           })
           .catch(function (error) {
             console.log(error);
           });
-
         axios
           .get("http://127.0.0.1:5000/companyController/getlist", {
             params: {
@@ -142,16 +142,11 @@ export default function App() {
             },
           })
           .then(function (response) {
-            console.log(response);
+            console.log(response.data);
           })
           .catch(function (error) {
             console.log(error);
           });
-
-        // latitude - string
-        // longitude - string
-        // name - string
-        // item - string
       });
       console.log("Testing console");
     } catch (e) {
