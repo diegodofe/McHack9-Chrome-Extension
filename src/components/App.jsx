@@ -191,9 +191,7 @@ export default function App() {
             <Card.Header as="h5">Local Alternatives</Card.Header>
             <Accordions suggestions={suggestions} />
           </div>
-        ) : (
-          <Spinner className="mb-2 mx-auto" animation="border" variant="secondary" />
-        )}
+        ) : null}
         {/* <Button variant="secondary" onClick={testFunction}>
           TEST FUNCTION
         </Button>

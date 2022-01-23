@@ -27,7 +27,7 @@ export default function Accordions(props) {
             </Accordion.Header>
             <Accordion.Body>
               <Stack className="s-0" direction="horizontal" gap={3}>
-                <img src={company.img} alt="random-pic" />
+                <img src={company.img} alt="company-pic" />
                 <figure className="text-end">
                   <blockquote className="blockquote">
                     <p>{company.product}</p>
