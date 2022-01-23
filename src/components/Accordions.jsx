@@ -23,14 +23,14 @@ export default function Accordions() {
           <Accordion.Item key={company.key} eventKey={company.key}>
             <Accordion.Header>
               <h6>
-                {company.name} <Badge bg={getColor(company.score)}>{company.score}</Badge>
+                <Badge bg={getColor(company.score)}>{company.score}</Badge> {company.name}
               </h6>
             </Accordion.Header>
             <Accordion.Body>
               <Stack className="s-0" direction="horizontal" gap={3}>
                 <img src={company.img} alt="random-pic" />
-                <figure class="text-end">
-                  <blockquote class="blockquote">
+                <figure className="text-end">
+                  <blockquote className="blockquote">
                     <p>{company.product}</p>
                   </blockquote>
                   <figcaption>{company.price}</figcaption>
