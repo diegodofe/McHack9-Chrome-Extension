@@ -114,32 +114,27 @@ export default function App() {
 
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
-        if (companyName === 'starbucks') {
-          productType = "tshirt"
-        }
         productType = amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results"
 
+        if (companyName === 'starbucks') {
+          productType = "coffee"
+        }
+
+        companyName = companyName.charAt(0).toUpperCase() + companyName.substring(1);
+
         axios
-          .get("http://127.0.0.1:5000/statecontroller/get", {
-            params: {
-              name: companyName,
-              longitude: finalLatitude,
-              latitude: finalLatitude,
-            },
+          .get("http://127.0.0.1:5000/stateController/get/" + companyName + "/50/-73", {
+
           })
           .then(function (response) {
             console.log(response);
-            console.log(response.data.esgrating)
-            setScore(response.data.esgrating)
+            setScore(response.data.esgRating)
           })
           .catch(function (error) {
             console.log(error);
           });
         axios
-          .get("http://127.0.0.1:5000/companyController/getlist", {
-            params: {
-              item: productType,
-            },
+          .get("http://127.0.0.1:5000/companyController/getlist/" + productType, {
           })
           .then(function (response) {
             console.log(response.data);
@@ -183,11 +178,11 @@ export default function App() {
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
         <Card.Body>
-          <CircleScore consumerScore={fakePropsScore} />
+          <CircleScore consumerScore={score || 82} />
         </Card.Body>
         <Card.Header as="h3">Consumer Score</Card.Header>
         <Card.Body>
-          <Card.Text>{getComment(fakePropsScore)}</Card.Text>
+          <Card.Text>{getComment(score || 82)}</Card.Text>
         </Card.Body>
         <Card.Header as="h5">Local Alternatives</Card.Header>
         <Accordions />
