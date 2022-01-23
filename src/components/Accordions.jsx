@@ -7,9 +7,9 @@ import Badge from "react-bootstrap/Badge";
 
 export default function Accordions() {
   function getColor(score) {
-    if (score >= 75) {
+    if (score > 75) {
       return "success";
-    } else if (score >= 50) {
+    } else if (score > 55) {
       return "warning";
     } else {
       return "danger";
