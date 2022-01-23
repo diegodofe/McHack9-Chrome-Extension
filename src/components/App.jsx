@@ -5,6 +5,7 @@ import axios from "axios";
 // React component imports
 import CircleScore from "./CircleScore";
 import Accordions from "./Accordions";
+import Comment from "./Comment";
 import { useState } from "react";
 
 // Boostrap imports
@@ -73,15 +74,7 @@ export default function App() {
           }
         }
 
-
         setItemName(amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results");
-
-        if (companyName == 'starbucks') {
-          setItemName('coffee')
-        }
-
-        var finalLatitude = "";
-        var finalLongitude = "";
 
         console.log("search term");
         console.log(amazonSearchTerm);
@@ -91,6 +84,10 @@ export default function App() {
 
         var baseUrlSplit = baseURl.split(".");
         var companyName = "";
+
+        if (companyName === "starbucks") {
+          setItemName("coffee");
+        }
 
         if (baseURl.length > 0) {
           companyName = baseUrlSplit[1];
@@ -104,9 +101,6 @@ export default function App() {
             // Show a map centered at latitude / longitude.
             console.log(latitude);
             console.log(longitude);
-
-            finalLatitude = latitude;
-            finalLongitude = longitude;
           });
         } else {
           alert("cannot retreive location, allow location permission");
@@ -162,28 +156,16 @@ export default function App() {
     }
   }, []);
 
-  const fakePropsScore = 42;
-
-  function getComment(score) {
-    if (score > 75) {
-      return "Great choice! Thanks for making the world a better place 🌲";
-    } else if (score > 55) {
-      return "Not bad, but you can do better! Checkout the companies below!";
-    } else {
-      return "Oof. Don't worry, it's not too late to shop somewhere else!";
-    }
-  }
+  // const fakePropsScore = 89;
 
   return (
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
+        <Card.Header as="h5">Consumer Score</Card.Header>
         <Card.Body>
           <CircleScore consumerScore={score || 82} />
         </Card.Body>
-        <Card.Header as="h3">Consumer Score</Card.Header>
-        <Card.Body>
-          <Card.Text>{getComment(score || 82)}</Card.Text>
-        </Card.Body>
+        <Comment score={score || 82} />
         <Card.Header as="h5">Local Alternatives</Card.Header>
         <Accordions />
         <Button variant="secondary" onClick={testFunction}>

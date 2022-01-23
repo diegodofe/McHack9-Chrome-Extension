@@ -17,7 +17,7 @@ export default function CircleScore(props) {
   function getDark(score) {
     if (score > 75) {
       return "#125C13";
-    } else if (score > 50) {
+    } else if (score > 55) {
       return "#FC9918";
     } else {
       return "#9B0000";
