@@ -8,6 +8,8 @@ import Accordions from "./Accordions";
 import Comment from "./Comment";
 import { useState } from "react";
 
+import companies from "../companies";
+
 // Boostrap imports
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -17,6 +19,7 @@ export default function App() {
   const [displayString, setDisplayString] = useState("");
   const [itemName, setItemName] = useState("");
   const [score, setScore] = useState(0);
+  const [suggestions, setSuggestions] = useState([]);
 
   const testFunction = async () => {
     try {
@@ -95,43 +98,50 @@ export default function App() {
         }
         console.log("Company name " + companyName);
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            const { latitude, longitude } = position.coords;
-            // Show a map centered at latitude / longitude.
-            console.log(latitude);
-            console.log(longitude);
-          });
-        } else {
-          alert("cannot retreive location, allow location permission");
-        }
+        // if (navigator.geolocation) {
+        //   navigator.geolocation.getCurrentPosition((position) => {
+        //     const { latitude, longitude } = position.coords;
+        //     // Show a map centered at latitude / longitude.
+        //     console.log(latitude);
+        //     console.log(longitude);
+        //   });
+        // } else {
+        //   alert("cannot retreive location, allow location permission");
+        // }
 
         console.log("item name " + amazonSearchTerm || walmartSearchTem);
 
-        productType = amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results"
+        productType = amazonSearchTerm || walmartSearchTem || targetSearchTerm || "cant find results";
 
-        if (companyName === 'starbucks') {
-          productType = "coffee"
+        if (companyName === "starbucks") {
+          productType = "coffee";
         }
 
         companyName = companyName.charAt(0).toUpperCase() + companyName.substring(1);
 
         axios
-          .get("http://127.0.0.1:5000/stateController/get/" + companyName + "/50/-73", {
-
-          })
+          .get("http://127.0.0.1:5000/stateController/get/" + companyName + "/50/-73", {})
           .then(function (response) {
             console.log(response);
-            setScore(response.data.esgRating)
+            setScore(response.data.esgRating);
           })
           .catch(function (error) {
             console.log(error);
           });
         axios
-          .get("http://127.0.0.1:5000/companyController/getlist/" + productType, {
-          })
+          .get("http://127.0.0.1:5000/companyController/getlist/" + productType, {})
           .then(function (response) {
             console.log(response.data);
+
+            var storageList = [];
+
+            response.data.forEach((item) => {
+              var listItem = companies.find((company) => {
+                return company.id === item.key;
+              });
+              listItem.score = item.esgRating;
+              storageList.push(listItem);
+            });
           })
           .catch(function (error) {
             console.log(error);
@@ -157,7 +167,6 @@ export default function App() {
   }, []);
 
   // const fakePropsScore = 89;
-
   return (
     <div className="App">
       <Card className="text-center" style={{ width: "18rem" }}>
@@ -167,12 +176,12 @@ export default function App() {
         </Card.Body>
         <Comment score={score || 82} />
         <Card.Header as="h5">Local Alternatives</Card.Header>
-        <Accordions />
-        <Button variant="secondary" onClick={testFunction}>
+        <Accordions suggestions={suggestions} />
+        {/* <Button variant="secondary" onClick={testFunction}>
           TEST FUNCTION
         </Button>
         <div>{displayString}</div>
-        <div>{itemName}</div>
+        <div>{itemName}</div> */}
       </Card>
     </div>
   );
